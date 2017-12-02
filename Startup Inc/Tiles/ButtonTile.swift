@@ -10,14 +10,14 @@ import UIKit
 
 class ButtonTile: MapTile {
     
-    var name = "Button"
+    var name = "button"
     var isRequiringAllTileUpdate = false
     
     func tapped() {
-        if self.name == "Button" {
-            self.name = "Button-Pressed"
+        if self.name == "button" {
+            self.name = "button-pressed"
         } else {
-            self.name = "Button"
+            self.name = "button"
         }
     }
 }

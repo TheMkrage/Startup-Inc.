@@ -17,6 +17,6 @@ class Items: NSObject {
     var decorations = [Decoration]()
     
     private override init() {
-       self.departments.append(Department(storeName: "Test", price: 3, image: #imageLiteral(resourceName: "rect"), description: "Fucker", levelUnlocked: 1, departmentName: "Bleh"))
+       self.departments.append(Department(storeName: "Computer", price: 3, image: #imageLiteral(resourceName: "computer tile"), description: "Hack away the sorrows", levelUnlocked: 1, departmentName: "Software"))
     }
 }

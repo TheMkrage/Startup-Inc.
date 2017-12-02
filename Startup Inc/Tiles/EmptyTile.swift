@@ -10,7 +10,7 @@ import UIKit
 
 class EmptyTile: MapTile {
     
-    var name = "rect"
+    var name = "empty"
     var isRequiringAllTileUpdate = false
     
     func tapped() {

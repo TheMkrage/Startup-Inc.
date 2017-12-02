@@ -35,6 +35,10 @@
 		7E291ECA1FD332F20007997A /* Decoration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E291EC91FD332F20007997A /* Decoration.swift */; };
 		7E291ECD1FD334B30007997A /* StoreTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E291ECC1FD334B30007997A /* StoreTableViewCell.swift */; };
 		7E291ECF1FD338F10007997A /* StoreTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E291ECE1FD338F10007997A /* StoreTabViewController.swift */; };
+		7E291ED21FD33F870007997A /* TransactionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E291ED11FD33F870007997A /* TransactionManager.swift */; };
+		7E291ED41FD33FBB0007997A /* MoneyStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E291ED31FD33FBB0007997A /* MoneyStore.swift */; };
+		7E291ED61FD344230007997A /* MapStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E291ED51FD344230007997A /* MapStore.swift */; };
+		7E291ED81FD34B0C0007997A /* Tiles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E291ED71FD34B0C0007997A /* Tiles.swift */; };
 		D259D3004174283E1F162CC5 /* Pods_Startup_Inc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D589ED24F332FBBC0CCCD915 /* Pods_Startup_Inc.framework */; };
 /* End PBXBuildFile section */
 
@@ -70,6 +74,10 @@
 		7E291EC91FD332F20007997A /* Decoration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Decoration.swift; sourceTree = "<group>"; };
 		7E291ECC1FD334B30007997A /* StoreTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreTableViewCell.swift; sourceTree = "<group>"; };
 		7E291ECE1FD338F10007997A /* StoreTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreTabViewController.swift; sourceTree = "<group>"; };
+		7E291ED11FD33F870007997A /* TransactionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransactionManager.swift; sourceTree = "<group>"; };
+		7E291ED31FD33FBB0007997A /* MoneyStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoneyStore.swift; sourceTree = "<group>"; };
+		7E291ED51FD344230007997A /* MapStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapStore.swift; sourceTree = "<group>"; };
+		7E291ED71FD34B0C0007997A /* Tiles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tiles.swift; sourceTree = "<group>"; };
 		D589ED24F332FBBC0CCCD915 /* Pods_Startup_Inc.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Startup_Inc.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD1D9D36A3F71AAF196D3CA8 /* Pods-Startup Inc.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Startup Inc.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Startup Inc/Pods-Startup Inc.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -102,6 +110,7 @@
 				7E0A0B641FD14956000E7926 /* GameMap.swift */,
 				7E0A0B661FD1520E000E7926 /* ButtonTile.swift */,
 				7E0A0B681FD155DF000E7926 /* MapTile+Extensions.swift */,
+				7E291ED71FD34B0C0007997A /* Tiles.swift */,
 			);
 			path = Tiles;
 			sourceTree = "<group>";
@@ -127,6 +136,7 @@
 		7E1EF1641FD0E6AB00097B76 /* Startup Inc */ = {
 			isa = PBXGroup;
 			children = (
+				7E291ED01FD33F750007997A /* Store */,
 				7E291ECB1FD334A50007997A /* Cells */,
 				7E291EBE1FD32EF80007997A /* Model */,
 				7E291EAC1FD31F6C0007997A /* ViewControllers */,
@@ -186,6 +196,16 @@
 				7E291ECC1FD334B30007997A /* StoreTableViewCell.swift */,
 			);
 			path = Cells;
+			sourceTree = "<group>";
+		};
+		7E291ED01FD33F750007997A /* Store */ = {
+			isa = PBXGroup;
+			children = (
+				7E291ED11FD33F870007997A /* TransactionManager.swift */,
+				7E291ED31FD33FBB0007997A /* MoneyStore.swift */,
+				7E291ED51FD344230007997A /* MapStore.swift */,
+			);
+			path = Store;
 			sourceTree = "<group>";
 		};
 		ADE92B1252491DFD74DFF1E5 /* Pods */ = {
@@ -328,6 +348,7 @@
 				7E0A0B5E1FD146C3000E7926 /* MapTile.swift in Sources */,
 				7E291EC21FD32F8B0007997A /* Component.swift in Sources */,
 				7E291EB01FD320340007997A /* ActiveAppsViewController.swift in Sources */,
+				7E291ED81FD34B0C0007997A /* Tiles.swift in Sources */,
 				7E1EF16C1FD0E6AB00097B76 /* GameScene.swift in Sources */,
 				7E291EBB1FD32C9A0007997A /* StoreViewController.swift in Sources */,
 				7E1EF16E1FD0E6AB00097B76 /* GameViewController.swift in Sources */,
@@ -337,12 +358,15 @@
 				7E0A0B651FD14956000E7926 /* GameMap.swift in Sources */,
 				7E291ECA1FD332F20007997A /* Decoration.swift in Sources */,
 				7E291ECD1FD334B30007997A /* StoreTableViewCell.swift in Sources */,
+				7E291ED61FD344230007997A /* MapStore.swift in Sources */,
 				7E0A0B671FD1520E000E7926 /* ButtonTile.swift in Sources */,
 				7E291EC41FD32F970007997A /* Department.swift in Sources */,
+				7E291ED41FD33FBB0007997A /* MoneyStore.swift in Sources */,
 				7E291EB21FD320470007997A /* ActiveTowersViewController.swift in Sources */,
 				7E1EF1661FD0E6AB00097B76 /* AppDelegate.swift in Sources */,
 				7E0A0B631FD14837000E7926 /* SKTileGroup+Extensions.swift in Sources */,
 				7E291EB61FD326B70007997A /* DepartmentsStoreViewController.swift in Sources */,
+				7E291ED21FD33F870007997A /* TransactionManager.swift in Sources */,
 				7E0A0B691FD155DF000E7926 /* MapTile+Extensions.swift in Sources */,
 				7E291EC01FD32F030007997A /* BuyableItem.swift in Sources */,
 			);

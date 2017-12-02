@@ -12,8 +12,7 @@ import GameplayKit
 import Presentr
 
 class GameViewController: UIViewController {
-
-    var map = [[MapTile]]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

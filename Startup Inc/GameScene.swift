@@ -8,7 +8,7 @@ import GameplayKit
 //import Presentr
 
 class GameScene: SKScene {
-    var map = GameMap(row: 15, col: 15)
+    var map = MapStore.shared.getMap()
     // MARK: Public Properties
     var entities = [GKEntity]()
     var graphs = [String : GKGraph]()
@@ -23,8 +23,7 @@ class GameScene: SKScene {
     
     override func didMove(to view: SKView) {
         
-        self.map.set(tile: ButtonTile(), row: 0, col: 0)
-        self.map.set(tile: ButtonTile(), row: 10, col: 5)
+        
         guard let backgroundLayer = childNode(withName: "background") as? SKTileMapNode else {
             fatalError("Background node not loaded")
         }
@@ -140,7 +139,6 @@ class GameScene: SKScene {
         if recognizer.state != .ended {
             return
         }
-        
         let location = recognizer.location(in: recognizer.view!)
         let targetLocation = self.convertPoint(fromView: location)
         let layerLocation = self.backgroundLayer.convert(targetLocation, from: self)
@@ -157,5 +155,6 @@ class GameScene: SKScene {
         } else {
             self.updateTile(atRow: selectRow, col: selectCol)
         }
+        MapStore.shared.saveMap(map: map)
     }
 }

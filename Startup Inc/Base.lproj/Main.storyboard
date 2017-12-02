@@ -19,48 +19,48 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RRr-Cu-eex">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RRr-Cu-eex">
                                 <rect key="frame" x="20" y="552" width="55" height="55"/>
-                                <color key="backgroundColor" red="1" green="0.33215609624315723" blue="0.53323762762911897" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="55" id="07k-e1-SaJ"/>
                                     <constraint firstAttribute="height" constant="55" id="J1d-oR-BSK"/>
                                 </constraints>
+                                <state key="normal" image="game store icon"/>
                                 <connections>
                                     <action selector="storeTab:" destination="BV1-FR-VrT" eventType="touchUpInside" id="EuP-vp-Dxs"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ui0-hU-yAh">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ui0-hU-yAh">
                                 <rect key="frame" x="113" y="552" width="55" height="55"/>
-                                <color key="backgroundColor" red="1" green="0.33215609619999997" blue="0.53323762760000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="55" id="T6z-zu-79g"/>
                                     <constraint firstAttribute="height" constant="55" id="VCr-Qw-4Hx"/>
                                 </constraints>
+                                <state key="normal" image="active apps icon"/>
                                 <connections>
                                     <action selector="activeApps:" destination="BV1-FR-VrT" eventType="touchUpInside" id="JFS-Is-Rqk"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MYK-Tv-ORc">
-                                <rect key="frame" x="300" y="552" width="55" height="55"/>
-                                <color key="backgroundColor" red="1" green="0.33215609619999997" blue="0.53323762760000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="55" id="EkS-lq-WqT"/>
-                                    <constraint firstAttribute="width" constant="55" id="QDg-9x-j00"/>
-                                </constraints>
-                                <connections>
-                                    <action selector="achievments:" destination="BV1-FR-VrT" eventType="touchUpInside" id="zyp-hs-kaG"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L8f-TX-sIn">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L8f-TX-sIn">
                                 <rect key="frame" x="206" y="552" width="55" height="55"/>
-                                <color key="backgroundColor" red="1" green="0.33215609619999997" blue="0.53323762760000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="55" id="7Cu-kw-8EZ"/>
                                     <constraint firstAttribute="height" constant="55" id="klt-TV-alh"/>
                                 </constraints>
+                                <state key="normal" image="active towers icon"/>
                                 <connections>
                                     <action selector="activeTowers:" destination="BV1-FR-VrT" eventType="touchUpInside" id="LOn-Dx-c2i"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MYK-Tv-ORc">
+                                <rect key="frame" x="300" y="552" width="55" height="55"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="55" id="EkS-lq-WqT"/>
+                                    <constraint firstAttribute="width" constant="55" id="QDg-9x-j00"/>
+                                </constraints>
+                                <state key="normal" image="achievements icon"/>
+                                <connections>
+                                    <action selector="achievments:" destination="BV1-FR-VrT" eventType="touchUpInside" id="zyp-hs-kaG"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -81,6 +81,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="32.799999999999997" y="33.733133433283363"/>
         </scene>
         <!--Decorations-->
         <scene sceneID="ijN-pk-EUN">
@@ -305,4 +306,10 @@
             <point key="canvasLocation" x="1964" y="35"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="achievements icon" width="110" height="110"/>
+        <image name="active apps icon" width="110" height="110"/>
+        <image name="active towers icon" width="110" height="110"/>
+        <image name="game store icon" width="110" height="110"/>
+    </resources>
 </document>
