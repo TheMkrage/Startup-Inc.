@@ -1,0 +1,12 @@
+PODS:
+  - Presentr (1.3)
+
+DEPENDENCIES:
+  - Presentr
+
+SPEC CHECKSUMS:
+  Presentr: 3f0825a42cb32ecd8fc6b6d0b0de87d7d0b42482
+
+PODFILE CHECKSUM: c515ac704e0a241d5b902c0a95302afc071c2ddb
+
+COCOAPODS: 1.1.1
