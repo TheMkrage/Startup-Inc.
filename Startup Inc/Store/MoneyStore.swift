@@ -11,7 +11,7 @@ import UIKit
 struct MoneyStore {
     static var shared = MoneyStore()
     
-    var startingMoney = 1.0
+    var startingMoney = 100.0
     var money: Double
     
     private init() {

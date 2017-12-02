@@ -18,5 +18,14 @@ class DepartmentsStoreViewController: StoreViewController {
         self.tableView.delegate = self
         self.tableView.dataSource = self
     }
+    
+    override func didBuyItem(sender: UIButton) {
+        super.didBuyItem(sender: sender)
+        guard let department = self.items[sender.tag] as? Department else {
+            fatalError()
+        }
+        let userInfo = ["tileName": department.tileName]
+        NotificationCenter.default.post(name: .init("boughtPlacementItem"), object: nil, userInfo: userInfo)
+    }
 
 }

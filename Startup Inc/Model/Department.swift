@@ -14,6 +14,7 @@ struct Department: BuyableItem {
     var image: UIImage
     var description: String
     var levelUnlocked: Int
+    var tileName: String
     
     var subtitle: String {
         get {
@@ -25,6 +26,4 @@ struct Department: BuyableItem {
     }
     
     var departmentName: String
-    
-    
 }

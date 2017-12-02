@@ -15,5 +15,7 @@ struct Component: BuyableItem {
     var image: UIImage
     var description: String
     var levelUnlocked: Int
-    var subtitle: String
+    var subtitle: String = ""
+    var timeInHours: Double
+    var department: String
 }

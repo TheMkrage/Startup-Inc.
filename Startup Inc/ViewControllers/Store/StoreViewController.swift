@@ -46,6 +46,9 @@ class StoreViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     @objc func didBuyItem(sender: UIButton) {
+        let item = self.items[sender.tag]
+        self.dismiss(animated: true, completion: nil)
+        _ = MoneyStore.shared.purchase(price: item.price)
         print(sender.tag)
     }
 }

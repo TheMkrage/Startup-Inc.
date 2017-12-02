@@ -11,7 +11,7 @@ import SpriteKit
 import GameplayKit
 import Presentr
 
-class GameViewController: UIViewController {
+class GameViewController: UIViewController, DepartmentTappedProtocol {
     @IBOutlet weak var moneyLabel: UILabel!
     
     @IBOutlet weak var xpLabel: UILabel!
@@ -21,10 +21,10 @@ class GameViewController: UIViewController {
         self.moneyChanged()
         if let view = self.view as! SKView? {
             // Load the SKScene from 'GameScene.sks'
-            if let scene = SKScene(fileNamed: "GameScene") {
+            if let scene = SKScene(fileNamed: "GameScene") as? GameScene {
                 // Set the scale mode to scale to fit the window
                 scene.scaleMode = .aspectFill
-                
+                scene.departmentTappedProtocol = self
                 // Present the scene
                 view.presentScene(scene)
             }
@@ -74,6 +74,12 @@ class GameViewController: UIViewController {
     }
     
     @objc func moneyChanged() {
-        self.moneyLabel.text = "\(MoneyStore.shared.money)k"
+        DispatchQueue.main.async {
+            self.moneyLabel.text = "\(MoneyStore.shared.money)k"
+        }
+    }
+    
+    func departmentTapped(named name: String) {
+        
     }
 }

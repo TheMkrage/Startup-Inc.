@@ -7,6 +7,10 @@ import SpriteKit
 import GameplayKit
 //import Presentr
 
+protocol DepartmentTappedProtocol {
+    func departmentTapped(named: String)
+}
+
 class GameScene: SKScene {
     var map = MapStore.shared.getMap()
     // MARK: Public Properties
@@ -14,16 +18,18 @@ class GameScene: SKScene {
     var graphs = [String : GKGraph]()
     var backgroundLayer: SKTileMapNode!
     
+    var placingTileName: String?
+    
+    var departmentTappedProtocol: DepartmentTappedProtocol?
+    
     private var lastUpdateTime : TimeInterval = 0
     
     // MARK: Override Functions
     override func sceneDidLoad() {
         self.lastUpdateTime = 0
     }
-    
+
     override func didMove(to view: SKView) {
-        
-        
         guard let backgroundLayer = childNode(withName: "background") as? SKTileMapNode else {
             fatalError("Background node not loaded")
         }
@@ -56,13 +62,14 @@ class GameScene: SKScene {
         view.addGestureRecognizer(pinchRecognizer)
         
         self.updateTileSetFromMap()
+        NotificationCenter.default.addObserver(self, selector: #selector(hasPurchased(notification:)), name: .init("boughtPlacementItem"), object: nil)
     }
     
     // MARK: - Updating Tiles
     func updateTile(atRow: Int, col: Int) {
         let tile = map.getTile(row: atRow, col: col)
         let tileGroup = self.backgroundLayer.tileSet.tileGroups.first(
-            where: {$0.name == tile.name})
+            where: {$0.name == tile})
         if tileGroup == nil {
             fatalError("I DONT HAVE THIS TILE")
         }
@@ -79,7 +86,7 @@ class GameScene: SKScene {
                 let tile = map.getTile(row: r, col: c)
                 // fetch tile group from included ones,
                 let tileGroup = self.backgroundLayer.tileSet.tileGroups.first(
-                    where: {$0.name == tile.name})
+                    where: {$0.name == tile})
                 // if none then ERROR
                 if tileGroup == nil {
                     fatalError("I DONT HAVE THIS TILE")
@@ -145,16 +152,27 @@ class GameScene: SKScene {
         // calculated selected
         let selectCol = self.backgroundLayer.tileColumnIndex(fromPosition: layerLocation)
         let selectRow = self.backgroundLayer.tileRowIndex(fromPosition: layerLocation)
-        print("row \(selectRow) col \(selectCol)")
-        self.map.tapped(row: selectRow, col: selectCol)
         
-        let tile = self.map.getTile(row: selectRow, col: selectCol)
-        
-        if tile.isRequiringAllTileUpdate {
-            self.updateTileSetFromMap()
-        } else {
+        if let placeTile = self.placingTileName {
+            print("PLACING AT row \(selectRow) col \(selectCol)")
+            self.map.set(tile: placeTile, row: selectRow, col: selectCol)
+            self.placingTileName = nil
             self.updateTile(atRow: selectRow, col: selectCol)
+        } else {
+            print("row \(selectRow) col \(selectCol)")
+            
+            let tile = self.map.getTile(row: selectRow, col: selectCol)
+            if tile != "empty" {
+                self.departmentTappedProtocol?.departmentTapped(named: tile)
+            }
+            self.updateTileSetFromMap()
         }
-        MapStore.shared.saveMap(map: map)
+    }
+    
+    @objc func hasPurchased(notification: NSNotification) {
+        guard let mapTile = notification.userInfo?["tileName"] as? String else {
+            fatalError()
+        }
+        self.placingTileName = mapTile
     }
 }
