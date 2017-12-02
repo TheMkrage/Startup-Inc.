@@ -12,10 +12,13 @@ import GameplayKit
 import Presentr
 
 class GameViewController: UIViewController {
+    @IBOutlet weak var moneyLabel: UILabel!
+    
+    @IBOutlet weak var xpLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.moneyChanged()
         if let view = self.view as! SKView? {
             // Load the SKScene from 'GameScene.sks'
             if let scene = SKScene(fileNamed: "GameScene") {
@@ -29,6 +32,7 @@ class GameViewController: UIViewController {
             view.showsFPS = true
             view.showsNodeCount = true
         }
+        NotificationCenter.default.addObserver(self, selector: #selector(moneyChanged), name: .init("moneyChanged"), object: nil)
     }
     
     @IBAction func storeTab(_ sender: Any) {
@@ -67,5 +71,9 @@ class GameViewController: UIViewController {
 
     override var prefersStatusBarHidden: Bool {
         return true
+    }
+    
+    @objc func moneyChanged() {
+        self.moneyLabel.text = "\(MoneyStore.shared.money)k"
     }
 }

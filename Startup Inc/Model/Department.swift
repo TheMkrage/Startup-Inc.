@@ -10,7 +10,7 @@ import UIKit
 
 struct Department: BuyableItem {
     var storeName: String
-    var price: Int
+    var price: Double
     var image: UIImage
     var description: String
     var levelUnlocked: Int

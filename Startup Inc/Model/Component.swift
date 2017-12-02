@@ -11,7 +11,7 @@ import UIKit
 struct Component: BuyableItem {
     
     var storeName: String
-    var price: Int
+    var price: Double
     var image: UIImage
     var description: String
     var levelUnlocked: Int

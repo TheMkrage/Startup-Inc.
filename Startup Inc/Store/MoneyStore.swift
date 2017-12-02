@@ -22,6 +22,7 @@ struct MoneyStore {
         }
         self.money = savedMoney
         userDefaults.synchronize()
+        NotificationCenter.default.post(Notification(name: .init("moneyChanged")))
     }
     
     mutating func purchase(price: Double) -> Bool {
@@ -32,6 +33,7 @@ struct MoneyStore {
         let userDefaults = UserDefaults.standard
         userDefaults.set(self.money, forKey: "money")
         userDefaults.synchronize()
+        NotificationCenter.default.post(Notification(name: .init("moneyChanged")))
         return true
     }
     
@@ -40,6 +42,7 @@ struct MoneyStore {
         let userDefaults = UserDefaults.standard
         userDefaults.set(self.money, forKey: "money")
         userDefaults.synchronize()
+        NotificationCenter.default.post(Notification(name: .init("moneyChanged")))
     }
     
     

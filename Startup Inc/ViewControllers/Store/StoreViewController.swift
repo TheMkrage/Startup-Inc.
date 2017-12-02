@@ -27,7 +27,14 @@ class StoreViewController: UIViewController, UITableViewDelegate, UITableViewDat
             return UITableViewCell()
         }
         cell.buyButton.setTitle("\(item.price)k", for: .normal)
-        cell.buyButton.addTarget(self, action: #selector(didBuyItem(sender:)), for: .touchUpInside)
+        if item.price > MoneyStore.shared.money {
+            cell.buyButton.removeTarget(self, action: #selector(didBuyItem(sender:)), for: .touchUpInside)
+            cell.buyButton.backgroundColor = UIColor.red
+        } else {
+            cell.buyButton.addTarget(self, action: #selector(didBuyItem(sender:)), for: .touchUpInside)
+            cell.buyButton.backgroundColor = UIColor.green
+        }
+        
         cell.buyButton.tag = indexPath.row
         cell.nameLabel.text = item.storeName
         cell.subtitleLabel.text = item.subtitle

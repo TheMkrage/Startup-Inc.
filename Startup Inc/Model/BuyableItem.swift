@@ -10,7 +10,7 @@ import UIKit
 
 protocol BuyableItem {
     var storeName: String {get set}
-    var price: Int {get set}
+    var price: Double {get set}
     var image: UIImage {get set}
     var description: String {get set}
     var levelUnlocked: Int {get set}
