@@ -42,7 +42,6 @@ class StoreViewController: UIViewController, UITableViewDelegate, UITableViewDat
         cell.iconView.image = item.image
         cell.isUserInteractionEnabled = true
         return cell
-        
     }
     
     @objc func didBuyItem(sender: UIButton) {

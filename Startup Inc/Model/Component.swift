@@ -15,7 +15,13 @@ struct Component: BuyableItem {
     var image: UIImage
     var description: String
     var levelUnlocked: Int
-    var subtitle: String = ""
-    var timeInHours: Double
+    var subtitle: String {
+        get {
+            return "\(self.hours) hr \(self.minutes) m"
+        }
+        set {   }
+    }
+    var hours: Int
+    var minutes: Int
     var department: String
 }

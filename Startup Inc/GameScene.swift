@@ -163,7 +163,7 @@ class GameScene: SKScene {
             
             let tile = self.map.getTile(row: selectRow, col: selectCol)
             if tile != "empty" {
-                self.departmentTappedProtocol?.departmentTapped(named: tile)
+                self.departmentTappedProtocol?.departmentTapped(named: Items.shared.tileNameToDepartment[tile] ?? "Software")
             }
             self.updateTileSetFromMap()
         }

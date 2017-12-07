@@ -80,6 +80,13 @@ class GameViewController: UIViewController, DepartmentTappedProtocol {
     }
     
     func departmentTapped(named name: String) {
-        
+        guard let vc = self.storyboard?.instantiateViewController(withIdentifier: "Components") as? ComponentStoreViewController else {
+            fatalError()
+        }
+        vc.departmentName = name
+        let nav = UINavigationController(rootViewController: vc)
+        let presentr = Presentr(presentationType: .popup)
+        presentr.backgroundOpacity = 0.45
+        self.customPresentViewController(presentr, viewController: nav, animated: true, completion: nil)
     }
 }
