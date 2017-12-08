@@ -15,23 +15,28 @@ struct DepartmentStore {
     
     private init() {    }
     
-    func save(departmentName: String, index: Int, time: (hours: Int, minutes: Int, seconds: Int)?, componentName: String) {
+    func save(departmentName: String, time: (hours: Int, minutes: Int, seconds: Int)?, capacity: Int, componentName: String) {
         let date = Date()
         let calendar = Calendar.current
         let userDefaults = UserDefaults.standard
         
-        guard let time = time else {
-            userDefaults.set(nil, forKey: "\(departmentName)-\(index)-time")
-            userDefaults.synchronize()
-            return
+        for i in 0..<capacity {
+            if userDefaults.string(forKey: "\(departmentName)-\(i)-component") == nil {
+                guard let time = time else {
+                    userDefaults.set(nil, forKey: "\(departmentName)-\(i)-time")
+                    userDefaults.synchronize()
+                    return
+                }
+                var finishDate = calendar.date(byAdding: .hour, value: time.hours, to: date)
+                finishDate = calendar.date(byAdding: .minute, value: time.minutes, to: finishDate!)
+                finishDate = calendar.date(byAdding: .second, value: time.seconds, to: finishDate!)
+                userDefaults.set(componentName, forKey: "\(departmentName)-\(i)-component")
+                userDefaults.set(finishDate, forKey: "\(departmentName)-\(i)-time")
+                
+                userDefaults.synchronize()
+                return
+            }
         }
-        var finishDate = calendar.date(byAdding: .hour, value: time.hours, to: date)
-        finishDate = calendar.date(byAdding: .minute, value: time.minutes, to: finishDate!)
-        finishDate = calendar.date(byAdding: .second, value: time.seconds, to: finishDate!)
-        userDefaults.set(componentName, forKey: "\(departmentName)-\(index)-component")
-        userDefaults.set(finishDate, forKey: "\(departmentName)-\(index)-time")
-    
-        userDefaults.synchronize()
     }
     
     func getRemainingTimeFor(departmentName: String, index: Int) -> (hours: Int, minutes: Int, seconds: Int)? {
@@ -63,11 +68,17 @@ struct DepartmentStore {
         return userDefaults.string(forKey: "\(departmentName)-\(index)-component")
     }
     
-    func harvest(departmentName: String, index:Int) {
+    func harvest(departmentName: String, index: Int) {
+        guard let componentName = getComponentNameFor(departmentName: departmentName, index: index) else {
+            fatalError()
+        }
+        // add item to inventory
+        InventoryStore.shared.add(componentName: componentName)
+        
+        // remove item from memory
         let userDefaults = UserDefaults.standard
         userDefaults.set(nil, forKey: "\(departmentName)-\(index)-component")
         userDefaults.set(nil, forKey: "\(departmentName)-\(index)-time")
         userDefaults.synchronize()
     }
-    
 }

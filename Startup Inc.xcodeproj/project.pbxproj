@@ -36,6 +36,7 @@
 		7E291EDC1FD366260007997A /* DepartmentStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E291EDB1FD366260007997A /* DepartmentStore.swift */; };
 		7E291EDE1FD370A00007997A /* ComponentStoreViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E291EDD1FD370A00007997A /* ComponentStoreViewController.swift */; };
 		7E291EE01FD37D7C0007997A /* ActiveComponentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E291EDF1FD37D7C0007997A /* ActiveComponentTableViewCell.swift */; };
+		7E98C04C1FDB0B6500D9622D /* InventoryStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7E98C04B1FDB0B6500D9622D /* InventoryStore.swift */; };
 		D259D3004174283E1F162CC5 /* Pods_Startup_Inc.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D589ED24F332FBBC0CCCD915 /* Pods_Startup_Inc.framework */; };
 /* End PBXBuildFile section */
 
@@ -72,6 +73,7 @@
 		7E291EDB1FD366260007997A /* DepartmentStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DepartmentStore.swift; sourceTree = "<group>"; };
 		7E291EDD1FD370A00007997A /* ComponentStoreViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentStoreViewController.swift; sourceTree = "<group>"; };
 		7E291EDF1FD37D7C0007997A /* ActiveComponentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActiveComponentTableViewCell.swift; sourceTree = "<group>"; };
+		7E98C04B1FDB0B6500D9622D /* InventoryStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InventoryStore.swift; sourceTree = "<group>"; };
 		D589ED24F332FBBC0CCCD915 /* Pods_Startup_Inc.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Startup_Inc.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD1D9D36A3F71AAF196D3CA8 /* Pods-Startup Inc.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Startup Inc.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Startup Inc/Pods-Startup Inc.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -195,6 +197,7 @@
 				7E291ED31FD33FBB0007997A /* MoneyStore.swift */,
 				7E291ED51FD344230007997A /* MapStore.swift */,
 				7E291EDB1FD366260007997A /* DepartmentStore.swift */,
+				7E98C04B1FDB0B6500D9622D /* InventoryStore.swift */,
 			);
 			path = Store;
 			sourceTree = "<group>";
@@ -352,6 +355,7 @@
 				7E291ED61FD344230007997A /* MapStore.swift in Sources */,
 				7E291EC41FD32F970007997A /* Department.swift in Sources */,
 				7E291ED41FD33FBB0007997A /* MoneyStore.swift in Sources */,
+				7E98C04C1FDB0B6500D9622D /* InventoryStore.swift in Sources */,
 				7E291EB21FD320470007997A /* ActiveTowersViewController.swift in Sources */,
 				7E1EF1661FD0E6AB00097B76 /* AppDelegate.swift in Sources */,
 				7E0A0B631FD14837000E7926 /* SKTileGroup+Extensions.swift in Sources */,

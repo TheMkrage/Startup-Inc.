@@ -62,12 +62,21 @@ class ActiveComponentTableController: NSObject, UITableViewDelegate, UITableView
         }
         cell.nameLabel.text = item.name
         cell.iconView.image = item.image
-        if item.time.0 == 0 && item.time.1 == 0 && item.time.2 == 0 {
-            cell.hoursLabel.text = "DONE"
+        
+        let hours = item.time.0
+        let minutes = item.time.1
+        let seconds = item.time.2
+
+        if hours != 0 {
+            cell.hoursLabel.text = "\(hours) hr"
+        } else if minutes != 0 {
+            cell.hoursLabel.text = "\(minutes) m"
+        } else if seconds != 0 {
+            cell.hoursLabel.text = "\(seconds) s"
         } else {
-            cell.hoursLabel.text = "\(item.time.0 ?? 0) hr \(item.time.1 ?? 0) m \(item.time.2 ?? 0) m"
-            cell.isUserInteractionEnabled = true
+            cell.hoursLabel.text = "DONE"
         }
+        cell.isUserInteractionEnabled = true
         return cell
     }
     
@@ -113,7 +122,6 @@ class ComponentStoreViewController: StoreViewController {
         self.topTable.reloadData()
     }
     
-    
     override func didBuyItem(sender: UIButton) {
         guard let item = self.items[sender.tag] as? Component else {
             fatalError()
@@ -124,7 +132,7 @@ class ComponentStoreViewController: StoreViewController {
         }
         let difference = currentNumberOfDepartmentsBeingUsed
         if difference < indicesAvailable {
-            DepartmentStore.shared.save(departmentName: departmentName ?? "", index: difference, time: item.time, componentName: item.storeName)
+            DepartmentStore.shared.save(departmentName: departmentName ?? "", time: item.time, capacity: indicesAvailable, componentName: item.storeName)
             self.topTable.reloadData()
         }
     }
