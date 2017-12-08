@@ -17,11 +17,10 @@ struct Component: BuyableItem {
     var levelUnlocked: Int
     var subtitle: String {
         get {
-            return "\(self.hours) hr \(self.minutes) m"
+            return "\(self.time.hours) hr \(self.time.minutes) m"
         }
         set {   }
     }
-    var hours: Int
-    var minutes: Int
+    var time: (hours: Int, minutes: Int, seconds: Int)
     var department: String
 }

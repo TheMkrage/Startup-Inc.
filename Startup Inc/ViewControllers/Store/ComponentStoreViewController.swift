@@ -8,16 +8,16 @@
 
 import UIKit
 class ActiveComponent {
-    var hours: Int?
-    var minutes: Int?
+    var time: (Int, Int, Int) // hours minute seconds
     var image: UIImage
     var name: String
+    var index: Int
     
-    init(hours: Int?, minutes: Int?, image: UIImage, name: String) {
-        self.hours = hours
-        self.minutes = minutes
+    init(time: (Int, Int, Int), image: UIImage, name: String, index: Int) {
+        self.time = time
         self.image = image
         self.name = name
+        self.index = index
     }
 }
 
@@ -33,17 +33,19 @@ class ActiveComponentTableController: NSObject, UITableViewDelegate, UITableView
         self.departmentName = departmentName
         super.init()
         //self.reloadComponents()
+        
     }
     
     func reloadComponents() {
         var openDeps = 0
         var newComponents = [ActiveComponent]()
         for i in 0..<self.indices {
-            guard let minutes = DepartmentStore.shared.getRemainingTimeFor(departmentName: departmentName, index: i).0, let hours = DepartmentStore.shared.getRemainingTimeFor(departmentName: departmentName, index: i).1, let name = DepartmentStore.shared.getComponentNameFor(departmentName: departmentName, index: i), let image = Items.shared.getComponentImage(with: name) else {
+            guard let time = DepartmentStore.shared.getRemainingTimeFor(departmentName: departmentName, index: i), let name = DepartmentStore.shared.getComponentNameFor(departmentName: departmentName, index: i), let image = Items.shared.getComponentImage(with: name) else {
                 openDeps = openDeps + 1
                 continue
             }
-            newComponents.append(ActiveComponent(hours: hours, minutes: minutes, image: image, name: name))
+            
+            newComponents.append(ActiveComponent(time: time, image: image, name: name, index: i))
         }
         self.activeComponents = newComponents
     }
@@ -60,9 +62,21 @@ class ActiveComponentTableController: NSObject, UITableViewDelegate, UITableView
         }
         cell.nameLabel.text = item.name
         cell.iconView.image = item.image
-        cell.hoursLabel.text = "\(item.hours ?? 0) hr \(item.minutes ?? 0) m"
-        cell.isUserInteractionEnabled = true
+        if item.time.0 == 0 && item.time.1 == 0 && item.time.2 == 0 {
+            cell.hoursLabel.text = "DONE"
+        } else {
+            cell.hoursLabel.text = "\(item.time.0 ?? 0) hr \(item.time.1 ?? 0) m \(item.time.2 ?? 0) m"
+            cell.isUserInteractionEnabled = true
+        }
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let item = self.activeComponents[indexPath.row]
+        if item.time.0 == 0 && item.time.1 == 0 && item.time.2 == 0 {
+            DepartmentStore.shared.harvest(departmentName: self.departmentName, index: item.index)
+            tableView.reloadData()
+        }
     }
 }
 
@@ -73,6 +87,8 @@ class ComponentStoreViewController: StoreViewController {
     
     var departmentName: String?
     var topController: ActiveComponentTableController?
+    
+    var myTimer = Timer()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -88,7 +104,15 @@ class ComponentStoreViewController: StoreViewController {
         
         self.topTable.delegate = self.topController
         self.topTable.dataSource = self.topController
+        
+        self.myTimer = Timer(timeInterval: 1.0, target: self, selector: #selector(refresh), userInfo: nil, repeats: true)
+        RunLoop.main.add(self.myTimer, forMode: RunLoopMode.defaultRunLoopMode)
     }
+    
+    @objc func refresh() {
+        self.topTable.reloadData()
+    }
+    
     
     override func didBuyItem(sender: UIButton) {
         guard let item = self.items[sender.tag] as? Component else {
@@ -98,9 +122,9 @@ class ComponentStoreViewController: StoreViewController {
         guard let currentNumberOfDepartmentsBeingUsed = self.topController?.activeComponents.count else {
             fatalError()
         }
-        let difference = indicesAvailable - currentNumberOfDepartmentsBeingUsed
-        if difference > 0 {
-            DepartmentStore.shared.save(departmentName: self.departmentName ?? "", index: difference - 1, hours: item.hours, minutes: item.minutes, componentName: item.storeName)
+        let difference = currentNumberOfDepartmentsBeingUsed
+        if difference < indicesAvailable {
+            DepartmentStore.shared.save(departmentName: departmentName ?? "", index: difference, time: item.time, componentName: item.storeName)
             self.topTable.reloadData()
         }
     }

@@ -43,9 +43,9 @@ class Items: NSObject {
         
         
         // COMPONENTS
-        self.components.append(Component(storeName: "Spaghetti Code", price: 0.5, image: #imageLiteral(resourceName: "safe"), description: "Gotta start somewhere", levelUnlocked: 0, hours: 0, minutes: 1, department: "Software"))
+        self.components.append(Component(storeName: "Spaghetti Code", price: 0.5, image: #imageLiteral(resourceName: "safe"), description: "Gotta start somewhere", levelUnlocked: 0, time: (1, 1, 0), department: "Software"))
         
-        self.components.append(Component(storeName: "Smooth Scrolling", price: 1.2, image: #imageLiteral(resourceName: "safe"), description: "Slick and polished", levelUnlocked: 2, hours: 0, minutes: 3, department: "Software"))
+        self.components.append(Component(storeName: "Smooth Scrolling", price: 1.2, image: #imageLiteral(resourceName: "safe"), description: "Slick and polished", levelUnlocked: 2, time: (0, 5, 0), department: "Software"))
         
         /*
             self.components.append(Component(storeName: "Search Bar", price: 1, image: #imageLiteral(resourceName: "safe"), description: "It’s like Google, but worse", levelUnlocked: 1, hours: 0, minutes: 1, department: "Software"))
